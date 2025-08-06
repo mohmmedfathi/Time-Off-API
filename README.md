@@ -2,6 +2,8 @@
 
 This project is a **FastAPI** web service that connects to an **Odoo** backend via XML-RPC to manage employee leave requests.
 
+https://6fb98e89a791.ngrok-free.app/
+
 ## 📌 Features
 
 - ✅ Submit new leave requests  
