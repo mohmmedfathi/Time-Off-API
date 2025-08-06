@@ -8,9 +8,8 @@ This project is a **FastAPI** web service that connects to an **Odoo** backend v
 - ✅ View leave requests for an employee  
 - ✅ Calculate remaining leave days  
 - ✅ Prevent overlapping leave requests  
-- ✅ Filter leave requests by status (e.g. approved, refused)  
 - ✅ List available leave types  
-- ✅ Clean architecture: Web layer, Service layer, Data layer  
+- :clock11: Filter leave requests by status (e.g. approved, refused)  
 
 ## 🧱 Project Structure
 
