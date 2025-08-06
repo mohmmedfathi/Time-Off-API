@@ -98,7 +98,6 @@ Content-Type: application/json
   "leave_type_id": 1,
   "date_from": "2025-08-15",
   "date_to": "2025-08-17",
-  "reason": "Vacation with family"
 }
 ```
 
