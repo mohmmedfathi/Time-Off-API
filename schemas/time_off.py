@@ -10,3 +10,7 @@ class TimeOffRequest(BaseModel):
 class RemainingLeavesResponse(BaseModel):
     employee_id: int
     remaining_leaves: float
+
+class LeaveType(BaseModel):
+    id: int
+    name: str

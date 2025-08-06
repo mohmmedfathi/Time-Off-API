@@ -1,9 +1,11 @@
+from typing import List
 from fastapi import APIRouter, HTTPException, status
-from schemas.time_off import TimeOffRequest, RemainingLeavesResponse
+from schemas.time_off import TimeOffRequest, RemainingLeavesResponse,LeaveType
 from services.time_off_service import (
     request_time_off_service,
     list_employee_time_off_service,
-    get_remaining_leaves_service
+    get_remaining_leaves_service,
+    list_leaves_time_off_service
 )
 
 router = APIRouter(prefix="/time_off")
@@ -43,5 +45,16 @@ def get_remaining_leaves(employee_id: int):
         }
     except ValueError as e:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
+
+
+
+
+@router.get("/leaves_types", response_model=List[LeaveType])
+def get_leaves_types():
+    try:
+        leaves_types = list_leaves_time_off_service()
+        return leaves_types
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))

@@ -1,4 +1,9 @@
 from odoo_client import models, uid, ODOO_DB, ODOO_PASSWORD
+from datetime import datetime
+
+def format_odoo_datetime(dt: str):
+    parsed = datetime.fromisoformat(dt)
+    return parsed.strftime("%Y-%m-%d %H:%M:%S")
 
 def create_leave_request(employee_id: int, date_from: str, date_to: str, holiday_status_id: int):
     return models.execute_kw(
@@ -7,15 +12,21 @@ def create_leave_request(employee_id: int, date_from: str, date_to: str, holiday
         [{
             'employee_id': employee_id,
             'holiday_status_id': holiday_status_id,
-            'date_from': date_from,
-            'date_to': date_to,
+            'date_from': format_odoo_datetime(date_from),
+            'date_to': format_odoo_datetime(date_to),
         }]
     )
 
-def get_employee_time_offs(employee_id: int):
-    print("*" * 70)
-    print(employee_id)
+
+def get_leaves_timeoff_types():
+    return models.execute_kw(
+           ODOO_DB, uid, ODOO_PASSWORD,
+           'hr.leave.type', 'search_read',
+           [],
+           {'fields':['id', 'name'] }
+    )
     
+def get_employee_time_offs(employee_id: int):
     return models.execute_kw(
         ODOO_DB, uid, ODOO_PASSWORD,
         'hr.leave', 'search_read',
